@@ -2,8 +2,12 @@ import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
 
 TOKEN = open('token.txt', 'r').readlines()[0].strip()
+TOOLS = open('tools.txt', 'r').readlines()
+VOWELS = open('name_vowels.txt', 'r').readlines()
+NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
-client = commands.Bot(command_prefix='h.', intents=intents)
+prefixes = 'h.', 'H.', 'f.'
+client = commands.Bot(command_prefix=prefixes, intents=intents)
 client.remove_command('help')
 
 @client.event
@@ -70,6 +74,39 @@ async def salami(ctx):
     seconds = math.floor(distance % 60)
 
     await ctx.send(f'I (Hesse) have not eaten salami in {years}y {days}d {hours}h {minutes}m {seconds}s')
+
+@client.command()
+async def me(ctx):
+    await ctx.send(random.choice(TOOLS))
+
+@client.command()
+async def avatar(ctx):
+    sender = ctx.message.author
+    receiver = ctx.message.mentions
+    if receiver:
+        await ctx.send(receiver[0].avatar_url)
+    else:
+        await ctx.send(sender.avatar_url)
+
+def generate_name():
+    name = ''
+    for i in range(random.randint(2,4)):
+        if i % 2:
+            name += random.choice(VOWELS).strip()
+        else:
+            name += random.choice(NON_VOWELS).strip()
+
+    return name.title()
+
+@client.command()
+async def cryptid(ctx):
+    embed = discord.Embed(
+        title=generate_name(),
+        colour=discord.Colour.blue()
+    )
+    embed.add_field(name='Test Embed', value='Test Embed',
+                    inline=False)
+    await ctx.send(embed=embed)
 
 ######################################
 #                                    #
