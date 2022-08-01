@@ -2,7 +2,7 @@ import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
 
 TOKEN = open('token.txt', 'r').readlines()[0].strip()
-TOOLS = open('tools.txt', 'r').readlines()
+TOOLS = open('tools.txt', 'r', encoding='utf-8').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
@@ -28,11 +28,16 @@ async def hhh(ctx):
 
 @client.command()
 async def help(ctx):
-    await ctx.send('ping, hhh, game, bonk, bagel, shake/handshake/respectfulhandshake, five/highfive, bite, deny, salami')  
+    await ctx.send('ping, hhh, game, bonk, bagel, shake/handshake/respectfulhandshake, five/highfive, bite, deny, salami, holler, hug')  
 
 @client.command()
 async def nothing(ctx):
     await ctx.send('​')
+
+@client.command() #action command that pastes the image of del having a bagel crisis
+async def bagelcrisis(ctx):
+    with open('bagel.jpg', 'rb') as fp:
+        await ctx.send(file=discord.File(fp, 'bagel.jpg'))
 
 @client.command()
 async def zalgo(ctx, *args):
@@ -116,6 +121,7 @@ async def cryptid(ctx):
 
 sender = None
 receiver = None
+delaccepthug = False
 
 @client.command()
 async def game(ctx):
@@ -139,6 +145,65 @@ async def bonk(ctx):
             f'**{sender}** RIPS a traffic sign out of the ground and bonks **{receiver}** on the noggin. Estimated recovery time: {random.randint(1,24)} months',
             f'**{sender}** bonks **{receiver}** on the head, making a loud and obnoxious cartoon sound effect. \"And I live to bonk again...\" says **{sender}**. they stare off into the sunset.',
             f'**{sender}** bonks **{receiver}** with a baseball bat, killing them instantly']
+    
+    await ctx.send(random.choice(options))
+
+@client.command() #A Del-specific command that allows him to accept hugs 
+async def delhug(ctx):
+    global sender
+    global receiver
+    global delaccepthug
+    global del_receiver
+    sender = ctx.message.author.name
+    receiver = ctx.message.mentions[0].name
+
+    if sender == 'WolfDeluxe':#checks if Del sent the command
+        if delaccepthug is True:#Switches if Del is accepting hugs or not
+            delaccepthug = False
+            await ctx.send(f'**{sender}** is no longer accepting a hug.')
+        else:
+            delaccepthug = True
+            del_receiver = ctx.message.mentions[0].name
+            await ctx.send(f'**{sender}** is now accepting a (single) hug from **{receiver}**.')  
+    else:
+        await ctx.send('You are not Del.')
+
+@client.command()
+async def hug(ctx):
+    global sender
+    global receiver
+    global delaccepthug
+    global del_receiver
+    sender = ctx.message.author.name
+    receiver = ctx.message.mentions[0].name
+    options = [f'**{sender}** hugs **{receiver}**']#WE NEED MORE MESSAGES HERE
+    
+    if receiver == 'WolfDeluxe':#Del-specific hug command
+        if delaccepthug == True and del_receiver == sender:#runs if Del wants hugs, and the sender is a specific person mentioned
+            del_options_positive = [f'**{sender}** enters **{receiver}**\'s warm embrace. Watch out for the spikes!', 
+             f'**{receiver}** opens his arms wide, and **{sender}** is squeezed tightly.',
+             f'**{receiver}** gets a facefull of {receiver}\'s mane as they are swallowed up in a big hug.',
+             f'**{sender}** hugs **{receiver}**, who quickly picks **{sender}** up and spins them around in a large circle!!!']
+            await ctx.send(random.choice(del_options_positive))  
+            delaccepthug = False     
+        else:#if del cannot be hugged right now
+            del_options_negative = [f'**{sender}** can go fuck themselves <3', 
+            f'**{receiver}** easily dodges **{sender}**\'s attempt at a hug. Go away.',
+            f'**{receiver}** questions why **{sender}** thought this was a good idea.',
+            f'**{sender}** is either doing this for attention, or forgot to get **{receiver}**\'s consent or some shit like that.']
+            await ctx.send(random.choice(del_options_negative))
+    else:
+        await ctx.send(random.choice(options))
+
+@client.command()
+async def hollar(ctx):
+    global sender
+    global receiver
+    sender = ctx.message.author.name
+    receiver = ctx.message.mentions[0].name
+    options = [f'**{sender}** shouts from the streets at **{receiver}** to GET OVER HERE!!!!',
+            f'**{sender}** takes in several breaths and YELLS AT THE TOP OF THEIR LUNGS TO GET **{receiver}** TO C\'MERE ALREADY!!!',
+            f'**{sender}** yells. A lot. Like wow **{receiver}** should probably figure out why or something.']
     
     await ctx.send(random.choice(options))
 
