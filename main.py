@@ -1,8 +1,11 @@
 #i shit the bed in the fourth grade
+from ast import Str
 import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
 
 TOKEN = open('token.txt', 'r').readlines()[0].strip()
+api_key = "0730be024eb4228d7a46736f4f14304b"
+base_url = "http://api.openweathermap.org/data/2.5/weather?"
 TOOLS = open('tools.txt', 'r', encoding='utf-8').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
@@ -77,6 +80,36 @@ async def zalgo(ctx, *args):
             output_word += ch 
         output_sentence.append(output_word)
     await ctx.send(' '.join(output_sentence))
+@client.command()
+async def weather(ctx, *, city: str)
+        await channel.send(embed=embed)
+        else:
+        await channel.send("City not found.")
+    city_name = city
+    complete_url = base_url + "appid=" + api_key + "&q=" + city_name
+    response = requests.get(complete_url)
+    x = response.json()
+    channel = ctx.message.channel
+        if x["cod"] != "404":
+        async with channel.typing():
+                        y = x["main"]
+            current_temperature = y["temp"]
+            current_temperature_celsiuis = str(round(current_temperature - 273.15))
+            current_pressure = y["pressure"]
+            current_humidity = y["humidity"]
+            z = x["weather"]
+            weather_description = z[0]["description"]
+            weather_description = z[0]["description"]
+            embed = discord.Embed(title=f"Weather in {city_name}",
+                              color=ctx.guild.me.top_role.color,
+                              timestamp=ctx.message.created_at,)
+            embed.add_field(name="Descripition", value=f"**{weather_description}**", inline=False)
+            embed.add_field(name="Temperature(C)", value=f"**{current_temperature_celsiuis}°C**", inline=False)
+            embed.add_field(name="Humidity(%)", value=f"**{current_humidity}%**", inline=False)
+            embed.add_field(name="Atmospheric Pressure(hPa)", value=f"**{current_pressure}hPa**", inline=False)
+            embed.set_thumbnail(url="https://i.ibb.co/CMrsxdX/weather.png")
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+
 
 @client.command()
 async def LEAN(ctx):
@@ -107,6 +140,16 @@ async def fortnite(ctx):
 async def walter(ctx):
     print('My name is Walter Hartwell White. I live at 308 Negra Arroyo Lane, Albuquerque, New Mexico, 87104. This is my confession. If youre watching this tape, Im probably dead– murdered by my brother-in-law, Hank Schrader. Hank has been building a meth empire for over a year now, and using me as his chemist. Shortly after my 50th birthday, he asked that I use my chemistry knowledge to cook methamphetamine, which he would then sell using connections that he made through his career with the DEA. I was... astounded. I... I always thought Hank was a very moral man, and I was particularly vulnerable at the time – something he knew and took advantage of. I was reeling from a cancer diagnosis that was poised to bankrupt my family. Hank took me in on a ride-along and showed me just how much money even a small meth operation could make. And I was weak. I didnt want my family to go into financial ruin, so I agreed. Hank had a partner, a businessman named Gustavo Fring. Hank sold me into servitude to this man. And when I tried to quit, Fring threatened my family. I didnt know where to turn. Eventually, Hank and Fring had a falling-out. Things escalated. Fring was able to arrange – uh, I guess... I guess you call it a "hit" – on Hank, and failed, but Hank was seriously injured. And I wound up paying his medical bills, which amounted to a little over $177,000. Upon recovery, Hank was bent on revenge. Working with a man named Hector Salamanca, he plotted to kill Fring. The bomb that he used was built by me, and he gave me no option in it. I have often contemplated suicide, but Im a coward. I wanted to go to the police, but I was frightened. Hank had risen to become the head of the Albuquerque DEA. To keep me in line, he took my children. For three months, he kept them. My wife had no idea of my criminal activities, and was horrified to learn what I had done. I was in hell. I hated myself for what I had brought upon my family. Recently, I tried once again to quit, and in response, he gave me this.')
     await ctx.send('My name is Walter Hartwell White. I live at 308 Negra Arroyo Lane, Albuquerque, New Mexico, 87104. This is my confession. If youre watching this tape, Im probably dead– murdered by my brother-in-law, Hank Schrader. Hank has been building a meth empire for over a year now, and using me as his chemist. Shortly after my 50th birthday, he asked that I use my chemistry knowledge to cook methamphetamine, which he would then sell using connections that he made through his career with the DEA. I was... astounded. I... I always thought Hank was a very moral man, and I was particularly vulnerable at the time – something he knew and took advantage of. I was reeling from a cancer diagnosis that was poised to bankrupt my family. Hank took me in on a ride-along and showed me just how much money even a small meth operation could make. And I was weak. I didnt want my family to go into financial ruin, so I agreed. Hank had a partner, a businessman named Gustavo Fring. Hank sold me into servitude to this man. And when I tried to quit, Fring threatened my family. I didnt know where to turn. Eventually, Hank and Fring had a falling-out. Things escalated. Fring was able to arrange – uh, I guess... I guess you call it a "hit" – on Hank, and failed, but Hank was seriously injured. And I wound up paying his medical bills, which amounted to a little over $177,000. Upon recovery, Hank was bent on revenge. Working with a man named Hector Salamanca, he plotted to kill Fring. The bomb that he used was built by me, and he gave me no option in it. I have often contemplated suicide, but Im a coward. I wanted to go to the police, but I was frightened. Hank had risen to become the head of the Albuquerque DEA. To keep me in line, he took my children. For three months, he kept them. My wife had no idea of my criminal activities, and was horrified to learn what I had done. I was in hell. I hated myself for what I had brought upon my family. Recently, I tried once again to quit, and in response, he gave me this.')
+
+@client.command()
+async def i(ctx):
+    print('"Now I am become death, destroyer of worlds" -J. Robert Oppenheimer, father of the atomic bomb, after witnessing the first test"')
+    await ctx.send('"Now I am become death, destroyer of worlds" -J. Robert Oppenheimer, father of the atomic bomb, after witnessing the first test"')
+
+@client.command()
+async def E1(ctx):
+    print('hydrogen')
+    await ctx.send('hydrogen')
 
 @client.command()
 async def me(ctx):
