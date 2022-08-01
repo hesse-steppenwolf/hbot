@@ -1,5 +1,7 @@
 import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
+#I just lost the game again
+test = "test"
 
 TOKEN = open('token.txt', 'r').readlines()[0].strip()
 TOOLS = open('tools.txt', 'r').readlines()
