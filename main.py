@@ -3,7 +3,7 @@ import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
 
 TOKEN = open('token.txt', 'r').readlines()[0].strip()
-TOOLS = open('tools.txt', 'r').readlines()
+TOOLS = open('tools.txt', 'r', encoding='utf-8').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
