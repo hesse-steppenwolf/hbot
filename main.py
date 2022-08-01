@@ -10,7 +10,7 @@ prefixes = 'h.', 'H.'
 client = commands.Bot(command_prefix=prefixes, intents=intents)
 client.remove_command('help')
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-api_key = open('weatherapikey.txt').readlines()[0].strip()
+api_key = open('token.txt').readlines()[1].strip()
 
 @client.event
 async def on_ready():
