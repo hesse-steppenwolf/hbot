@@ -6,13 +6,13 @@ TOOLS = open('tools.txt', 'r').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
-prefixes = 'h.', 'H.', 'f.'
+prefixes = 'h.', 'H.'
 client = commands.Bot(command_prefix=prefixes, intents=intents)
 client.remove_command('help')
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('oh no'))
+    await client.change_presence(activity=discord.Game('with forces to powerful for my own good'))
     print('BOT ONLINE')
 
 @client.command()
