@@ -7,7 +7,7 @@ TOOLS = open('tools.txt', 'r', encoding='utf-8').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
-prefixes = 'h.', 'H.', 'f.'
+prefixes = 'ö.', 'Ö.'
 client = commands.Bot(command_prefix=prefixes, intents=intents)
 client.remove_command('help')
 
@@ -15,6 +15,26 @@ client.remove_command('help')
 async def on_ready():
     await client.change_presence(activity=discord.Game('oh no'))
     print('BOT ONLINE')
+
+@client.command()
+async def jj(ctx):
+    print('Jedes Jahr an deinem Geburtstag gehen deine Eltern in den Zoo und bewerfen den Storch mit Steinen') 
+    await ctx.send('Jedes Jahr an deinem Geburtstag gehen deine Eltern in den Zoo und bewerfen den Storch mit Steinen')
+
+@client.command()
+async def DEsentence(ctx):
+    print('Ich lebe in deinen Mauern von Son nenuntergang bis zur Dämmerung, aber tagsüber bin ich in deinem Schornstein')
+    await ctx.send('Ich lebe in deinen Mauern von Son nenuntergang bis zur Dämmerung, aber tagsüber bin ich in deinem Schornstein')
+
+@client.command()
+async def RUsentence(ctx):
+    print('Я не терплю, когда мои друзья мочатся в моем супе')
+    await ctx.send('Я не терплю, когда мои друзья мочатся в моем супе')
+
+@client.command()
+async def JPtest(ctx):
+    print('ハンバーガーチーズバーガーホットドッグハンバーガーチーズバーガーホットドッグ')
+    await ctx.send ('ハンバーガーチーズバーガーホットドッグハンバーガーチーズバーガーホットドッグ')
 
 @client.command()
 async def ping(ctx):
