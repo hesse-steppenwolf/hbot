@@ -1,3 +1,4 @@
+#i shit the bed in the fourth grade
 import discord, random, datetime, requests, math
 from discord.ext import commands, tasks
 
