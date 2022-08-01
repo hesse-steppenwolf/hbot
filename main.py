@@ -38,8 +38,8 @@ async def JPtest(ctx):
 
 @client.command()
 async def ping(ctx):
-    print('PONG')
-    await ctx.send(f'PONG! {round(client.latency * 1000)}ms')
+    print('ping')
+    await ctx.send(f'ping: {round(client.latency * 1000)}ms')
 
 @client.command()
 async def hhh(ctx):
@@ -79,22 +79,9 @@ async def zalgo(ctx, *args):
     await ctx.send(' '.join(output_sentence))
 
 @client.command()
-async def salami(ctx):
-    source = requests.get('https://salamitimer.neocities.org').text
-    source = source.split('$$$$$')[1].split()
-    salami_time = datetime.datetime(*map(int, source))
-    today = datetime.datetime.now()
-
-    distance = today - salami_time
-    distance = distance.total_seconds()
-
-    years = math.floor(distance / (60 * 60 * 24 * 365))
-    days = math.floor(distance / (60 * 60 * 24))
-    hours = math.floor((distance % (60 * 60 * 24)) / (60 * 60))
-    minutes = math.floor((distance % (60 * 60)) / 60)
-    seconds = math.floor(distance % 60)
-
-    await ctx.send(f'I (Hesse) have not eaten salami in {years}y {days}d {hours}h {minutes}m {seconds}s')
+async def LEAN(ctx):
+    print('Its literally just cola you piece of shit. Theres no cough syrup or anything. What the fuck is wrong with you. How fucking desperate are you to seem cool that you decide you want to force a "joke" about a child consuming drugs. Which would be funny except nothing in this scene implies that theyre doing drugs or a drug stand-in. You just saw a can of soda and the two neurons in your head fired for the first time in a week, and you jumped into the comments to screech lEAn and spam purple emojis like a clown bastard. You people are the reason art is dying. Fuck you')
+    await ctx.send(f'Its literally just cola you piece of shit. Theres no cough syrup or anything. What the fuck is wrong with you. How fucking desperate are you to seem cool that you decide you want to force a "joke" about a child consuming drugs. Which would be funny except nothing in this scene implies that theyre doing drugs or a drug stand-in. You just saw a can of soda and the two neurons in your head fired for the first time in a week, and you jumped into the comments to screech lEAn and spam purple emojis like a clown bastard. You people are the reason art is dying. Fuck you')
 
 @client.command()
 async def me(ctx):
