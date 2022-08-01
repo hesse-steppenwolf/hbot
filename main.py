@@ -310,8 +310,6 @@ async def deny(ctx):
     else:
         await ctx.send('There is no action to deny')
          
-client.run(TOKEN)
-
 @client.command()
 async def jj(ctx):
     print('Jedes Jahr an deinem Geburtstag gehen deine Eltern in den Zoo und bewerfen den Storch mit Steinen') 
@@ -366,3 +364,6 @@ async def walter(ctx):
 async def i(ctx):
     print('"Now I am become death, destroyer of worlds" -J. Robert Oppenheimer, father of the atomic bomb, after witnessing the first test"')
     await ctx.send('"Now I am become death, destroyer of worlds" -J. Robert Oppenheimer, father of the atomic bomb, after witnessing the first test"')
+
+client.run(TOKEN)
+
