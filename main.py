@@ -6,13 +6,13 @@ TOOLS = open('tools.txt', 'r', encoding='utf-8').readlines()
 VOWELS = open('name_vowels.txt', 'r').readlines()
 NON_VOWELS = open('name_non_vowels.txt', 'r').readlines()
 intents = discord.Intents().all()
-prefixes = 'dem.', 'DEM.' #THIS PREFIX IS DEL-SPECIFIC
+prefixes = 'h.', 'H.'
 client = commands.Bot(command_prefix=prefixes, intents=intents)
 client.remove_command('help')
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('Gonna lose the game so much omg')) #Bot status 
+    await client.change_presence(activity=discord.Game('with forces to powerful for my own good'))
     print('BOT ONLINE')
 
 @client.command()
