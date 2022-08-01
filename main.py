@@ -85,6 +85,7 @@ async def salami(ctx):
 @client.command()
 async def me(ctx):
     await ctx.send(random.choice(TOOLS))
+    
 @client.command()
 async def weather(ctx, *, city: str):
     city_name = city
